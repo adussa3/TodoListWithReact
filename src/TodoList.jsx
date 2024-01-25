@@ -2,12 +2,13 @@
 import { useState, useEffect } from "react";
 
 // Import Components
-import Navbar from "./Navbar";
 import TodoForm from "./TodoForm";
 import TodoItem from "./TodoItem";
 
 // Import Material UI Components
+import Box from "@mui/material/Box";
 import List from "@mui/material/List";
+import Typography from "@mui/material/Typography";
 
 // Set the inital todos to the data stored in local storage
 const getInitalData = () => {
@@ -58,8 +59,18 @@ function TodoList() {
     };
 
     return (
-        <div>
-            <h1>Todo List</h1>
+        <Box
+            sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column",
+                m: 3,
+            }}
+        >
+            <Typography variant="h2" component="h1" sx={{ flexGrow: 1 }}>
+                Todo List
+            </Typography>
             <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
                 {todos.map((todo) => {
                     const { id, text, isCompleted } = todo;
@@ -67,7 +78,7 @@ function TodoList() {
                 })}
                 <TodoForm addTodo={addTodo} />
             </List>
-        </div>
+        </Box>
     );
 }
 

@@ -31,10 +31,9 @@ function TodoForm({ addTodo }) {
                 functions, the event object is automatically passed into them!
              */}
             <form onSubmit={handleSubmit}>
-                {" "}
                 <TextField
                     id={"outlined-basic"}
-                    label="New Item"
+                    label="Add Todo"
                     variant="outlined"
                     value={text}
                     onChange={handleChange}
