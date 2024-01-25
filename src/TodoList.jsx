@@ -1,31 +1,41 @@
-// Import useState and uuid
-import { useState } from "react";
-import { v4 as uuid } from "uuid";
+// Import useState and useEffect
+import { useState, useEffect } from "react";
 
 // Import Components
+import Navbar from "./Navbar";
 import TodoForm from "./TodoForm";
 import TodoItem from "./TodoItem";
 
 // Import Material UI Components
 import List from "@mui/material/List";
 
-// Testing data
-const initialTodos = [
-    { id: uuid(), text: "buy groceries", isCompleted: false },
-    { id: uuid(), text: "do homework", isCompleted: true },
-    { id: uuid(), text: "go to doctor's appointment", isCompleted: false },
-];
+// Set the inital todos to the data stored in local storage
+const getInitalData = () => {
+    const data = JSON.parse(localStorage.getItem("todos"));
+    if (data) {
+        return data;
+    } else {
+        return [];
+    }
+};
 
 function TodoList() {
     // Todos State
-    const [todos, setTodos] = useState(initialTodos);
+    const [todos, setTodos] = useState(getInitalData);
+
+    // Store the current todos data in local storage whenever the Todos State changes
+    useEffect(() => {
+        localStorage.setItem("todos", JSON.stringify(todos));
+    }, [todos]);
 
     // Add a new item to the Todos State
     const addTodo = (text) => {
         if (text.length == 0) {
             return;
         }
-        const newTodo = { id: uuid(), text, isCompleted: false };
+
+        // Note: you don't have to install the UUID NPM Package, you can use crypto.randomUUID()!
+        const newTodo = { id: crypto.randomUUID(), text, isCompleted: false };
         setTodos([...todos, newTodo]);
     };
 
