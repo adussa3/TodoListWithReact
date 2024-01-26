@@ -16,7 +16,14 @@ const getInitalData = () => {
     if (data) {
         return data;
     } else {
-        return [];
+        const initialData = [
+            { id: crypto.randomUUID(), text: "Walk the dog", isCompleted: false },
+            { id: crypto.randomUUID(), text: "Cook dinner", isCompleted: true },
+            { id: crypto.randomUUID(), text: "Go to the doctor", isCompleted: true },
+            { id: crypto.randomUUID(), text: "Buy groceries", isCompleted: false },
+            { id: crypto.randomUUID(), text: "Finish homework", isCompleted: true },
+        ];
+        return initialData;
     }
 };
 
