@@ -11,6 +11,7 @@ import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 
 // Set the inital todos to the data stored in local storage
+// NOTE: localStorage can only store strings! So we need to parse the todos string back to an Object
 const getInitalData = () => {
     const data = JSON.parse(localStorage.getItem("todos"));
     if (data) {
@@ -32,6 +33,7 @@ function TodoList() {
     const [todos, setTodos] = useState(getInitalData);
 
     // Store the current todos data in local storage whenever the Todos State changes
+    // NOTE: localStorage can only take in strings! So we need to convert the todos Object into a String!
     useEffect(() => {
         localStorage.setItem("todos", JSON.stringify(todos));
     }, [todos]);
